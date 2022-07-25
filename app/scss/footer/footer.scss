@@ -1,0 +1,104 @@
+.footer {
+    padding: 100px $horizontalSpaces__desktop;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #424242;
+
+    @media (max-width: $tablet) {
+        padding: 60px $horizontalSpaces__tablet;
+    }
+
+    @media (max-width: $tabletSmall) {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    @media (max-width: $mobile) {
+        padding: 40px $horizontalSpaces__mobile;
+    }
+
+    &__info {
+        max-width: 300px;
+
+        @media (max-width: $tabletSmall) {
+            padding-bottom: 16px;
+            text-align: center;
+        }
+    }
+
+    &__infoText {
+        padding-bottom: 24px;
+        font-family: "Roboto-Bold", sans-serif;
+        font-size: 20px;
+        color: $white;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 10px;
+        line-height: 1.5;
+        color: $white;
+        text-transform: uppercase;
+    }
+
+    &__data {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-end;
+        justify-content: center;
+
+        @media (max-width: $tabletSmall) {
+            align-items: center;
+        }
+    }
+
+    &__menu {
+        margin: 0 -6px;
+        padding-bottom: 14px;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+
+        &__item {
+            position: relative;
+            padding: 0 6px;
+            display: block;
+            font-family: "Roboto-Regular", sans-serif;
+            font-size: 14px;
+            color: $white;
+            text-transform: uppercase;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: -.5px;
+                display: block;
+                width: 1px;
+                height: 100%;
+                background-color: $productsBrown;
+            }
+
+            &:last-child::after {
+                display: none;
+            }
+        }
+    }
+
+    &__designed {
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 18px;
+        color: $white;
+        text-align: right;
+    }
+
+}

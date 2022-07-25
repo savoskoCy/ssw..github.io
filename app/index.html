@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="testTask" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="testTask" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="testTask" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="testTask" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Store</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+
+<header class="header" ng-controller="productsCtrl">
+    <div class="header__navBar">
+        <a href="#" class="header__homeLink">
+            <img src="./imgs/header/header__mainLogo.svg" alt="main logo" class="header__mainLogo"/>
+        </a>
+        <nav class="header__navList">
+            <a href="#" title="home" class="header__navList__item">Home</a>
+            <a href="" title="products" ng-click="scrollToProducts()" class="header__navList__item">Products</a>
+            <a href="" title="cart" class="header__navList__item header__navList__item--cart">
+                <img src="./imgs/header/header-cart.svg" alt="cart" class="header__navList__cart">
+            </a>
+        </nav>
+    </div>
+    <div class="centeredVertical header__text">
+        <h1 class="header__title">Our clothing, your comfort</h1>
+        <p class="header__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua.</p>
+    </div>
+    <button type="button" ng-click="scrollToProducts()" class="header__scrlToProd"></button>
+    <div class="header__background"></div>
+</header>
+
+<section id="productsSectionId" ng-controller="productsCtrl">
+    <section class="filtersSection">
+        <div class="filtersSection__filters">
+            <div ng-repeat="type in getTypes()" class="filtersSection__filters__item">
+                <label class="filtersSection__filters__label">
+                    <input
+                            type="checkbox"
+                            ng-value="type"
+                            ng-model="showCategory[type]"
+                            class="filtersSection__filters__input"/>
+                    <span class="filtersSection__filters__checkbox"></span>
+                    {{ type }}
+                </label>
+            </div>
+        </div>
+        <button class="filtersSection__seeAll" ng-click="clearFilters()">See all products</button>
+    </section>
+
+    <section class="productsSection">
+        <div class="productsSection__list">
+            <div
+                    class="productsSection__item"
+                    ng-repeat="item in data.items | filter:changeFilter"
+                    ng-if="item.type.toLowerCase() !== 'other'">
+                <div class="productsSection__item__option">
+                    <button
+                            class="optionList__selected"
+                            ng-class="{'active':openList === true}"
+                            ng-click="openList = !openList">
+                        {{item.options[0]}}
+                    </button>
+                    <div class="optionList__optionsItems" ng-class="{'opened':openList === true}">
+                        <button
+                                class="optionList__option"
+                                ng-repeat="option in item.options"
+                                ng-click="chosenItem(option, $event)"
+                                ng-if="!$first"
+                        >{{option}}
+                        </button>
+                    </div>
+                </div>
+                <img height="auto" class="productsSection__item__img" ng-src="{{item.img}}"
+                     alt="{{item.name}}">
+                <div class="productsSection__item__info">
+                    <p class="productsSection__item__name">{{item.name}}</p>
+                    <p class="productsSection__item__price">{{item.price}}&euro;</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<section class="phraseSection">
+    <a href="https://twitter.com" target="_blank" title="twitter" class="phraseSection__link">
+        <img src="imgs/twitter-icon.svg" alt="twitter" class="phraseSection__icon"/>
+    </a>
+    <p class="phraseSection__text">&ldquo; E-commerce psd theme available &rdquo;</p>
+</section>
+
+<footer class="footer" ng-controller="menuCtrl">
+    <div class="footer__info">
+        <h3 class="footer__infoText">Trekking</h3>
+        <p class="footer__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <div class="footer__data">
+        <div class="footer__menu">
+            <a
+                    ng-repeat="item in data.footerMenu"
+                    ng-href="{{item.link}}"
+                    title="{{item.title}}"
+                    class="footer__menu__item">
+                {{item.name}}
+            </a>
+        </div>
+        <p class="footer__designed">Design by gianluca cosetta</p>
+    </div>
+
+</footer>
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+<script src="app.js"></script>
+<script src="core/version/version.js"></script>
+<script src="core/version/version-directive.js"></script>
+<script src="core/version/interpolate-filter.js"></script>
+</body>
+</html>

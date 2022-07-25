@@ -1,0 +1,33 @@
+.phraseSection {
+    padding: 24px $horizontalSpaces__desktop;
+    background-color: #535253;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    @media (max-width: $tablet) {
+        padding: 20px $horizontalSpaces__tablet;
+    }
+
+    @media (max-width: $mobile) {
+        padding: 16px $horizontalSpaces__mobile;
+    }
+
+    &__link {
+        padding-right: 18px;
+
+        @include hoverScale;
+    }
+
+    &__icon {
+        width: 29px;
+        height: 24px;
+    }
+
+    &__text {
+        font-family: "Roboto-Regular", sans-serif;
+        font-size: 16px;
+        color: $white;
+    }
+}

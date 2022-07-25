@@ -1,0 +1,9 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.centeredVertical {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}

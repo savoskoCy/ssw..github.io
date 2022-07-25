@@ -1,0 +1,164 @@
+.filtersSection {
+    padding: $verticalSpaces__desktop $horizontalSpaces__desktop;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $productsBackground;
+
+    @media (max-width: $tablet) {
+        padding: $verticalSpaces__tablet $horizontalSpaces__tablet;
+    }
+    
+    @media (max-width: $tabletSmall) {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    @media (max-width: $mobile) {
+        padding: $verticalSpaces__mobile $horizontalSpaces__mobile;
+    }
+
+    &__filters {
+        margin: 0 -20px;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+
+        @media (max-width: $tabletSmall) {
+            margin: 0 -16px;
+            padding-bottom: $horizontalSpaces__mobile;
+        }
+
+        @media (max-width: $mobile) {
+            margin: 0 -8px;
+        }
+
+        &__item {
+            padding: 0 20px;
+
+            @media (max-width: $tabletSmall) {
+                padding: 0 16px;
+            }
+
+            @media (max-width: $mobile) {
+                padding: 0 8px;
+            }
+        }
+
+        &__label {
+            position: relative;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: flex-start;
+
+            font-family: "Roboto-Regular", sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+            color: #333;
+            cursor: pointer;
+
+            @media (max-width: $tablet) {
+                font-size: 18px;
+            }
+
+            @media (max-width: $mobile) {
+                font-size: 14px;
+            }
+
+            &:hover {
+                .filtersSection__filters__input ~ .filtersSection__filters__checkbox {
+                    border-color: $productsBrown;
+                }
+            }
+        }
+
+        &__input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+            &:checked {
+                & ~ .filtersSection__filters__checkbox {
+                    border-color: $productsBrown;
+
+                    &::after {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        &__checkbox {
+            position: relative;
+            margin-right: 20px;
+            width: 24px;
+            height: 24px;
+            background-color: $white;
+            border: 1.6px solid #cbcbcb;
+            border-radius: 4px;
+            transition: all $basicTransitionTime ease-in-out;
+
+            @media (max-width: $tablet) {
+                margin-right: 18px;
+                width: 20px;
+                height: 20px;
+            }
+
+            @media (max-width: $mobile) {
+                margin-right: 14px;
+                width: 16px;
+                height: 16px;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 46%;
+                left: 20%;
+                display: none;
+                width: 9px;
+                height: 15px;
+                border: solid $productsBrown;
+                border-width: 0 3.6px 3.6px 0;
+                transform: rotate(45deg) translate(-50%, -50%);
+
+                @media (max-width: $tablet) {
+                    width: 7px;
+                    height: 13px;
+                }
+
+                @media (max-width: $mobile) {
+                    top: 50%;
+                    width: 6px;
+                    height: 10px;
+                }
+            }
+        }
+    }
+
+    &__seeAll {
+        padding: 20px 10px;
+        font-family: 'Roboto-Regular', sans-serif;
+        font-size: 14px;
+        color: $white;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 6px;
+        background-color: $productsBrown;
+
+        @include hoverScale;
+
+        @media (max-width: $tablet) {
+            padding: 16px 8px;
+        }
+
+        @media (max-width: $mobile) {
+            padding: 10px 6px;
+        }
+    }
+}
